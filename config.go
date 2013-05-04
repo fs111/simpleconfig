@@ -1,4 +1,5 @@
 package simpleconfig
+
 //a package for handling simple config files in key=value format.
 //the code treats # as the comment character
 
@@ -24,11 +25,11 @@ type Config struct {
 
 //Creates a new config struct for the given path
 // which is assumed to be a file on the file system
-func NewConfig(path string) (c *Config, err error){
+func NewConfig(path string) (c *Config, err error) {
 	cfg := new(Config)
 	cfg.Path = path
 	cfg.Entries = make(map[string]string)
-    parseError := cfg.Parse()
+	parseError := cfg.Parse()
 	return cfg, parseError
 }
 
