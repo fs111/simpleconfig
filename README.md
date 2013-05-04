@@ -5,7 +5,7 @@ simpleconfig is a trivial configuration file library for config files
 following the key=value format. The format uses `#` as the comment sign. Think
 of, how `bash` treats assignments and comments and you get the idea. 
 
-example config file
+Example config file
 -------------------
 
 This file is used by [kurz.go](http://github.com/fs111/kurz.go) from, which
@@ -28,8 +28,20 @@ This file is used by [kurz.go](http://github.com/fs111/kurz.go) from, which
     # directory to serve static files
     static-directory=static
 
-Usage
-=====
+
+Installation and usage
+======================
+
+To install the library with the go commannd, simply do:
+    
+    go get github.com/fs111/simpleconfig
+
+To stay in sync with the latest developments, use:
+    
+    go get -u github.com/fs111/simpleconfig
+
+Code
+----
     
     import (
         "github.com/fs111/simpleconfig"
