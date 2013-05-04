@@ -49,7 +49,7 @@ Code
 
       
     func main(){
-        cfg, err := NewConfig("/path/to/config")
+        cfg, err := simpleconfig.NewConfig("/path/to/config")
         if err != nil{
             // handle error  
         }
