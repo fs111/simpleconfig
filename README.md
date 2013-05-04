@@ -79,6 +79,10 @@ If you have problems, suggestions or anything else, you would like to add,
 please open a pull request here on github.
 
 
+CI
+==
+[![Build Status](https://travis-ci.org/fs111/simpleconfig.png)](https://travis-ci.org/fs111/simpleconfig)
+
 License
 =======
 Copyright (c) 2013 André Kelpe
