@@ -1,15 +1,16 @@
 simpleconfig - a simple configuration file library for go
 =========================================================
 
-simpleconfig is a trivial configuration file library for config files
-following the key=value format. The format uses `#` as the comment sign. Think
+`simpleconfig` is a trivial configuration file library for configuration files
+following the `key=value` format. The format uses `#` as the comment sign. Think
 of, how `bash` treats assignments and comments and you get the idea. 
 
 Example config file
 -------------------
 
-This file is used by [kurz.go](http://github.com/fs111/kurz.go) from, which
-`simpleconfig` library was extracted:
+This is an example config file used by
+[kurz.go](http://github.com/fs111/kurz.go) from, which `simpleconfig` library
+was extracted:
 
     # port to listen on
     port=9999
@@ -73,15 +74,17 @@ Code
 
     }
 
-Contributing
-============
-If you have problems, suggestions or anything else, you would like to add,
-please open a pull request here on github.
-
 
 CI
 ==
 [![Build Status](https://travis-ci.org/fs111/simpleconfig.png)](https://travis-ci.org/fs111/simpleconfig)
+
+
+Contributing
+============
+If you have problems, suggestions or anything else that you would like to add,
+please open a pull request here on github.
+
 
 License
 =======
@@ -103,5 +106,3 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
