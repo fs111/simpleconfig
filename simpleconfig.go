@@ -1,7 +1,6 @@
 package simpleconfig
-
 //a package for handling simple config files in key=value format.
-//the code treats # as the comment character
+//the code treats # as the comment character.
 
 import (
 	"errors"
@@ -29,13 +28,13 @@ func NewConfig(path string) (c *Config, err error) {
 	cfg := new(Config)
 	cfg.Path = path
 	cfg.Entries = make(map[string]string)
-	parseError := cfg.Parse()
+	parseError := cfg.parse()
 	return cfg, parseError
 }
 
 //Parses the configuration file and stores all key-value
 //pairs in the Entries map
-func (c Config) Parse() error {
+func (c Config) parse() error {
 	contents, err := ioutil.ReadFile(c.Path)
 	if err != nil {
 		return err
@@ -95,4 +94,26 @@ func (c Config) GetIntDefault(key string, val int) int {
 		return entry
 	}
 	return val
+}
+
+// Returns the boolean value for the given key. In case the key does not exist
+// or the parsing of the boolean value fails err will be set to a non nil value
+func (c Config) GetBool(key string) (b bool, err error){
+    entry, e := c.GetString(key)
+	if e == nil {
+		return strconv.ParseBool(entry)
+    }
+	msg := fmt.Sprintf("unknown configuration entry '%s'", key)
+	return false, errors.New(msg)
+}
+
+
+// Returns the boolean value for the given key. In case the key does not exist
+// the given default value is returned.
+func (c Config) GetBoolDefault(key string, value bool) (b bool){
+    entry, e := c.GetBool(key)
+    if e == nil{
+        return entry
+    }
+    return value;
 }

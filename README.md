@@ -72,6 +72,15 @@ Code
 
         intVal := cfg.GetIntDefault("answer", 42)
 
+
+        // and of course bool
+
+        flag, err := cfg.GetBool("someflag")
+        
+        // or
+
+        flag := cfg.GetBoolDefault("someflag", false)
+        
     }
 
 
