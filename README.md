@@ -33,7 +33,7 @@ was extracted:
 Installation and usage
 ======================
 
-To install the library with the go commannd, simply do:
+To install the library with the go comand, simply do:
     
     go get github.com/fs111/simpleconfig
 
