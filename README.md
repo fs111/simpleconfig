@@ -2,14 +2,14 @@ simpleconfig - a simple configuration file library for go
 =========================================================
 
 `simpleconfig` is a trivial configuration file library for configuration files
-following the `key=value` format. The format uses `#` as the comment sign. Think
-of, how `bash` treats assignments and comments and you get the idea. 
+following the `key=value` format. The format uses `#` as the comment character. Think
+of how `bash` treats assignments and comments and you get the idea. 
 
 Example config file
 -------------------
 
 This is an example config file used by
-[kurz.go](http://github.com/fs111/kurz.go) from, which `simpleconfig` library
+[kurz.go](http://github.com/fs111/kurz.go) from which the `simpleconfig` library
 was extracted:
 
     # port to listen on
