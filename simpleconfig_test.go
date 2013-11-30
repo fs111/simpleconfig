@@ -105,68 +105,64 @@ func Test_GetInt(t *testing.T) {
 	}
 }
 
-
-func Test_GetBoolEmptyFile(t *testing.T){
+func Test_GetBoolEmptyFile(t *testing.T) {
 	c, _ := NewConfig("/dev/null")
-    val, err := c.GetBool("somekey")
-    if err == nil{
-        t.Error("the boolean setting should not exist")
-    }
-    if val {
-        t.Error("the value must be false")
-    }
+	val, err := c.GetBool("somekey")
+	if err == nil {
+		t.Error("the boolean setting should not exist")
+	}
+	if val {
+		t.Error("the value must be false")
+	}
 }
 
-
-
-func Test_GetBool(t *testing.T){
+func Test_GetBool(t *testing.T) {
 	tmpFile := MakeConfigFile("bool1=1\nbool2=0\nbool3=true\nbool4=false")
 	defer os.Remove(tmpFile.Name())
 
 	c, _ := NewConfig(tmpFile.Name())
 
-    val, err := c.GetBool("bool1")
-    if err != nil{
-        t.Error("no error should be returned")
-    }
-    if !val {
-        t.Error("the value must be true")
-    }
-    val, err = c.GetBool("bool3")
-    if err != nil{
-        t.Error("no error should be returned")
-    }
-    if !val {
-        t.Error("the value must be true")
-    }
-    val, err = c.GetBool("bool2")
-    if err != nil{
-        t.Error("no error should be returned")
-    }
-    if val {
-        t.Error("the value must be false")
-    }
-    val, err = c.GetBool("bool4")
-    if err != nil{
-        t.Error("no error should be returned")
-    }
-    if val {
-        t.Error("the value must be false")
-    }
+	val, err := c.GetBool("bool1")
+	if err != nil {
+		t.Error("no error should be returned")
+	}
+	if !val {
+		t.Error("the value must be true")
+	}
+	val, err = c.GetBool("bool3")
+	if err != nil {
+		t.Error("no error should be returned")
+	}
+	if !val {
+		t.Error("the value must be true")
+	}
+	val, err = c.GetBool("bool2")
+	if err != nil {
+		t.Error("no error should be returned")
+	}
+	if val {
+		t.Error("the value must be false")
+	}
+	val, err = c.GetBool("bool4")
+	if err != nil {
+		t.Error("no error should be returned")
+	}
+	if val {
+		t.Error("the value must be false")
+	}
 }
 
-func Test_GetBoolDefaultEmptyFile(t *testing.T){
+func Test_GetBoolDefaultEmptyFile(t *testing.T) {
 	c, _ := NewConfig("/dev/null")
-    val := c.GetBoolDefault("somekey", true)
-    if !val {
-        t.Error("the value must be true")
-    }
-    val = c.GetBoolDefault("somekey", false)
-    if val {
-        t.Error("the value must be false")
-    }
+	val := c.GetBoolDefault("somekey", true)
+	if !val {
+		t.Error("the value must be true")
+	}
+	val = c.GetBoolDefault("somekey", false)
+	if val {
+		t.Error("the value must be false")
+	}
 }
-
 
 func MakeConfigFile(content string) *os.File {
 	tmpFile, _ := ioutil.TempFile("", "simpleconfig")
