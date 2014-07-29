@@ -116,6 +116,18 @@ func Test_GetBoolEmptyFile(t *testing.T) {
 	}
 }
 
+
+func Test_GetStringTrim(t *testing.T) {
+	tmpFile := MakeConfigFile("val = 42abc")
+	defer os.Remove(tmpFile.Name())
+	c, _ := NewConfig(tmpFile.Name())
+    val, _ := c.GetString("val")
+	if val != "42abc" {
+		t.Error("the value of foo should be bar")
+    }
+}
+
+
 func Test_GetBool(t *testing.T) {
 	tmpFile := MakeConfigFile("bool1=1\nbool2=0\nbool3=true\nbool4=false")
 	defer os.Remove(tmpFile.Name())

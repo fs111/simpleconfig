@@ -2,8 +2,8 @@ simpleconfig - a simple configuration file library for go
 =========================================================
 
 `simpleconfig` is a trivial configuration file library for configuration files
-following the `key=value` format. The format uses `#` as the comment character. Think
-of how `bash` treats assignments and comments and you get the idea. 
+following the `key=value` format. `key = value` is also permitted.  The format
+uses `#` as the comment character. 
 
 Example config file
 -------------------
@@ -34,36 +34,36 @@ Installation and usage
 ======================
 
 To install the library with the go comand, simply do:
-    
+
     go get github.com/fs111/simpleconfig
 
 To stay in sync with the latest developments, use:
-    
+
     go get -u github.com/fs111/simpleconfig
 
 Code
 ----
-    
+
     import (
         "github.com/fs111/simpleconfig"
     )
 
-      
+
     func main(){
         cfg, err := simpleconfig.NewConfig("/path/to/config")
         if err != nil{
-            // handle error  
+            // handle error
         }
 
         // get a string value from the config
         // handle error, if necessary...
         val, e := cfg.GetString("key")
-        
+
 
         // get a string, but return a default, if it's not set
         // if the key "ook?" does not exist, it will return "ook!", otherwise it
         // will return the value from the config file
-        val, e := cfg.GetStringDefault("ook?", "ook!") 
+        val, e := cfg.GetStringDefault("ook?", "ook!")
 
         // same API for integers
         intVal, e := cfg.GetInt("somekey")
@@ -76,11 +76,11 @@ Code
         // and of course bool
 
         flag, err := cfg.GetBool("someflag")
-        
+
         // or
 
         flag := cfg.GetBoolDefault("someflag", false)
-        
+
     }
 
 
@@ -97,7 +97,7 @@ please open a pull request here on github.
 
 License
 =======
-Copyright (c) 2013 André Kelpe
+Copyright (c) 2014 André Kelpe
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
