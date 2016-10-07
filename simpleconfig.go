@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -55,13 +56,15 @@ func (c Config) parse() error {
 // Returns the config entry belonging to the given key, if present,
 // otherwise err will be not nil.
 func (c Config) GetString(key string) (entry string, err error) {
+	envVal := os.Getenv(strings.ToUpper(key))
+	if envVal != "" {
+		return envVal, nil
+	}
 	value, ok := c.Entries[key]
-	var e error
+	var e error = nil
 	if !ok {
 		msg := fmt.Sprintf("unknown configuration entry '%s'", key)
 		e = errors.New(msg)
-	} else {
-		e = nil
 	}
 	return value, e
 }

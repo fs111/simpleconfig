@@ -52,6 +52,19 @@ func Test_GetStringEmptyFile(t *testing.T) {
 	}
 }
 
+func Test_GetStringEmptyFileWithEnv(t *testing.T) {
+	c, _ := NewConfig("/dev/null")
+	os.Setenv("TEST42", "foo")
+	val, err := c.GetString("test42")
+	if err != nil {
+		t.Error("no error should have been returned")
+	}
+	if val != "foo" {
+		t.Error("the value foo should have been returned")
+	}
+	os.Setenv("TEST42", "")
+}
+
 func Test_GetStringDefaultEmptyFile(t *testing.T) {
 	c, _ := NewConfig("/dev/null")
 	defaultValue := "default"
@@ -116,17 +129,15 @@ func Test_GetBoolEmptyFile(t *testing.T) {
 	}
 }
 
-
 func Test_GetStringTrim(t *testing.T) {
 	tmpFile := MakeConfigFile("val = 42abc")
 	defer os.Remove(tmpFile.Name())
 	c, _ := NewConfig(tmpFile.Name())
-    val, _ := c.GetString("val")
+	val, _ := c.GetString("val")
 	if val != "42abc" {
 		t.Error("the value of foo should be bar")
-    }
+	}
 }
-
 
 func Test_GetBool(t *testing.T) {
 	tmpFile := MakeConfigFile("bool1=1\nbool2=0\nbool3=true\nbool4=false")
