@@ -6,7 +6,6 @@ package simpleconfig
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strconv"
 	"strings"
@@ -17,14 +16,14 @@ const (
 	SEPARATOR = "="
 )
 
-//struct representing a config file
+// struct representing a config file
 // which are simple key=value entries
 type Config struct {
 	Path    string
 	Entries map[string]string
 }
 
-//Creates a new config struct for the given path
+// Creates a new config struct for the given path
 // which is assumed to be a file on the file system
 func NewConfig(path string) (c *Config, err error) {
 	cfg := new(Config)
@@ -34,10 +33,10 @@ func NewConfig(path string) (c *Config, err error) {
 	return cfg, parseError
 }
 
-//Parses the configuration file and stores all key-value
-//pairs in the Entries map
+// Parses the configuration file and stores all key-value
+// pairs in the Entries map
 func (c Config) parse() error {
-	contents, err := ioutil.ReadFile(c.Path)
+	contents, err := os.ReadFile(c.Path)
 	if err != nil {
 		return err
 	}
@@ -69,8 +68,8 @@ func (c Config) GetString(key string) (entry string, err error) {
 	return value, e
 }
 
-//Returns the value for the given key, if it is present, otherwise
-//the val is returned.
+// Returns the value for the given key, if it is present, otherwise
+// the val is returned.
 func (c Config) GetStringDefault(key string, val string) string {
 	entry, e := c.GetString(key)
 	if e == nil {
@@ -79,8 +78,8 @@ func (c Config) GetStringDefault(key string, val string) string {
 	return val
 }
 
-//Returns the value stored under the key as an int if present, otherwise
-//err is set to non nil
+// Returns the value stored under the key as an int if present, otherwise
+// err is set to non nil
 func (c Config) GetInt(key string) (val int, err error) {
 	entry, e := c.GetString(key)
 	if e == nil {
